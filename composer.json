@@ -1,0 +1,15 @@
+{
+    "name": "alen/assignment2",
+    "description": "A assignment plugin for Noogla Agency",
+    "type": "wordpress-plugin",
+    "license": "GPLv2",
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Assignment2\\Includes\\": "includes/",
+            "Assignment2\\Admin\\": "admin/",
+            "Assignment2\\Frontend\\": "public/"
+        }
+    }
+}
