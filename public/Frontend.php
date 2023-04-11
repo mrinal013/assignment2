@@ -64,7 +64,7 @@ class Frontend {
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
-
+		wp_enqueue_style( 'bootstrap', 'https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css', array(), $this->version );
 
 	}
 
@@ -87,8 +87,57 @@ class Frontend {
 		 * class.
 		 */
 
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'assets/js/script.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_script( 'bootstrap', 'https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js', array(), $this->version, true );
+
+		wp_register_script( 'script', plugin_dir_url( __FILE__ ) . 'assets/js/script.js', array( 'jquery' ), $this->version, true );
+
+		wp_enqueue_script( 'script' );
+
+		// in JavaScript, object properties are accessed as ajax_object.ajax_url, ajax_object.we_value.
+		wp_localize_script( 'script', 'ajax_object', array( 
+			'ajax_url'	=> admin_url( 'admin-ajax.php' ),
+			'nonce'		=> wp_create_nonce( 'assignment-nonce' ),
+		) );
 
 	}
+
+	public function q_symphony_skeleton_api_cb() {
+		// nonce verification.
+		if ( ! wp_verify_nonce( $_POST['nonce'], 'assignment-nonce' ) ) {
+			wp_die ( 'You are not allow to request!');
+		}
+        $email = $_POST['email'];
+		$password = $_POST['password'];
+
+		$endpoint = 'https://symfony-skeleton.q-tests.com/api/v2/token';
+
+		$body = [
+			'email'  	=> $email,
+			'password' 	=> $password,
+		];
+
+		$body = wp_json_encode( $body );
+
+		$options = [
+			'body'        => $body,
+			'headers'     => [
+				'Content-Type' => 'application/json',
+			],
+		];
+
+		$api_response = wp_remote_post( $endpoint, $options );
+		$response_code = wp_remote_retrieve_response_code( $api_response );
+		if ( $response_code >=200 && $response_code < 400 ) {
+			$api_body     = json_decode( wp_remote_retrieve_body( $api_response ) );
+			// print_r($api_body);
+			$token = $api_body->token_key;
+			wp_send_json_success( array( 'token'=>$token ) );
+		}
+			// echo 'true';
+		// } else {
+			// echo 'false';
+		// }
+        wp_die();
+    }
 
 }

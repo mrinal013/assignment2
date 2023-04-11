@@ -151,6 +151,9 @@ class Controller {
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
 
+		$this->loader->add_action( 'wp_ajax_q_symphony_skeleton_api_cb', $plugin_public, 'q_symphony_skeleton_api_cb' );
+		$this->loader->add_action( 'wp_ajax_nopriv_q_symphony_skeleton_api_cb', $plugin_public, 'q_symphony_skeleton_api_cb' );
+
 	}
 
 	/**

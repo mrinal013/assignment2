@@ -37,6 +37,13 @@ class Admin {
 	private $version;
 
 	/**
+	 * The array of templates that this plugin tracks.
+	 *
+	 * @var      array
+	 */
+	protected $templates;
+
+	/**
 	 * Initialize the class and set its properties.
 	 *
 	 * @since    1.0.0
@@ -47,6 +54,8 @@ class Admin {
 
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
+
+		
 
 		$this->login_template();
 	}
