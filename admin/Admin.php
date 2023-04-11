@@ -2,6 +2,7 @@
 namespace Assignment2\Admin;
 
 use Assignment2\Admin\Login as Login;
+use Assignment2\Admin\CPT as CPT;
 
 /**
  * The admin-specific functionality of the plugin.
@@ -16,7 +17,7 @@ use Assignment2\Admin\Login as Login;
 
 class Admin {
 
-	use Login;
+	use Login, CPT;
 
 	/**
 	 * The ID of this plugin.
@@ -37,13 +38,6 @@ class Admin {
 	private $version;
 
 	/**
-	 * The array of templates that this plugin tracks.
-	 *
-	 * @var      array
-	 */
-	protected $templates;
-
-	/**
 	 * Initialize the class and set its properties.
 	 *
 	 * @since    1.0.0
@@ -55,9 +49,10 @@ class Admin {
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
 
-		
-
 		$this->login_template();
+
+		$this->register_movie_cpt();
+
 	}
 
 	

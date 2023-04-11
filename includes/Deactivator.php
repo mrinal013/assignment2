@@ -22,24 +22,8 @@ class Deactivator {
 	 * @since    1.0.0
 	 */
 	public static function deactivate() {
-		$object = new self();
-		$object->take_off_notice();
+
 	}
 
-	public function take_off_notice() {
-		set_transient('my_deactivation_transient', 'My plugin is being deactivated', 100);
-		$this->sample_admin_notice__success();
-	}
-
-	/**
-	 * Admin notice on deactivation
-	 */
-	function sample_admin_notice__success() {
-		$message = get_transient('my_deactivation_transient');
-
-    	if (empty($message)) return;
-
-    	echo "<div class='error'><p>$message</p></div>";
-	}
 
 }

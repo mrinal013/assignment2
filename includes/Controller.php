@@ -6,6 +6,7 @@ use Assignment2\Includes\Loader as Loader;
 use Assignment2\Includes\I18n as I18n;
 use Assignment2\Admin\Admin as Admin;
 use Assignment2\Frontend\Frontend as Frontend;
+use Assignment2\Includes\Block as Block;
 
 /**
  * The core plugin class.
@@ -22,6 +23,7 @@ use Assignment2\Frontend\Frontend as Frontend;
  * @author     Mrinal Haque <mrinalhaque99@gmail.com>
  */
 class Controller {
+
 
 	/**
 	 * The loader that's responsible for maintaining and registering all hooks that power
@@ -80,6 +82,7 @@ class Controller {
 		$this->set_locale();
 		$this->define_admin_hooks();
 		$this->define_public_hooks();
+		$this->register_blocks();
 		$this->run();
 	}
 
@@ -134,6 +137,7 @@ class Controller {
 
 		$plugin_admin = new Admin( $this->get_plugin_name(), $this->get_version() );
 
+		$this->loader->add_action( 'init', $plugin_admin, 'register_movie_cpt' );
 
 	}
 
@@ -154,6 +158,14 @@ class Controller {
 		$this->loader->add_action( 'wp_ajax_q_symphony_skeleton_api_cb', $plugin_public, 'q_symphony_skeleton_api_cb' );
 		$this->loader->add_action( 'wp_ajax_nopriv_q_symphony_skeleton_api_cb', $plugin_public, 'q_symphony_skeleton_api_cb' );
 
+	}
+
+	public function register_blocks() {
+		$plugin_blocks = new Block( $this->get_plugin_name(), $this->get_version() );
+
+		$this->loader->add_action( 'init', $plugin_blocks, 'register_panel' );
+
+		$this->loader->add_action( 'init', $plugin_blocks, 'register_movie_quote_block' );
 	}
 
 	/**
