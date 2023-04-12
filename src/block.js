@@ -1,6 +1,6 @@
 const { registerBlockType } = wp.blocks;
 
-registerBlockType( 'assignment2/test-block', {
+const Quote_Block = registerBlockType( 'assignment/quote-block', {
 	title: 'Basic Example',
 	icon: 'smiley',
 	category: 'layout',
@@ -8,3 +8,4 @@ registerBlockType( 'assignment2/test-block', {
 	save: () => <div>Hello World!</div>,
 } );
 
+export default Quote_Block;

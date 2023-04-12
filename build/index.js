@@ -2,10 +2,10 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./src/panel.js":
-/*!**********************!*\
-  !*** ./src/panel.js ***!
-  \**********************/
+/***/ "./src/awp-custom-postmeta-fields.js":
+/*!*******************************************!*\
+  !*** ./src/awp-custom-postmeta-fields.js ***!
+  \*******************************************/
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 __webpack_require__.r(__webpack_exports__);
@@ -16,18 +16,85 @@ const {
   __
 } = wp.i18n;
 const {
+  compose
+} = wp.compose;
+const {
+  withSelect,
+  withDispatch
+} = wp.data;
+const {
   PluginDocumentSettingPanel
 } = wp.editPost;
 const {
+  ToggleControl,
+  TextControl,
   PanelRow
 } = wp.components;
-const Movie_Title = () => {
+const AWP_Custom_Plugin = _ref => {
+  let {
+    postType,
+    postMeta,
+    setPostMeta
+  } = _ref;
+  if ('movie' !== postType) return null; // Will only render component for post type 'post'
+
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(PluginDocumentSettingPanel, {
     title: __('My Custom Post meta', 'txtdomain'),
+    icon: "edit",
     initialOpen: "true"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(PanelRow, null, "Hello there."));
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(PanelRow, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(TextControl, {
+    label: __('Write some text, if you like', 'txtdomain'),
+    value: postMeta._my_custom_text,
+    onChange: value => setPostMeta({
+      _my_custom_text: value
+    })
+  })));
 };
-/* harmony default export */ __webpack_exports__["default"] = (Movie_Title);
+/* harmony default export */ __webpack_exports__["default"] = (compose([withSelect(select => {
+  return {
+    postMeta: select('core/editor').getEditedPostAttribute('meta'),
+    postType: select('core/editor').getCurrentPostType()
+  };
+}), withDispatch(dispatch => {
+  return {
+    setPostMeta(newMeta) {
+      dispatch('core/editor').editPost({
+        meta: newMeta
+      });
+    }
+  };
+})])(AWP_Custom_Plugin));
+
+/***/ }),
+
+/***/ "./src/block.js":
+/*!**********************!*\
+  !*** ./src/block.js ***!
+  \**********************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+
+const {
+  registerBlockType
+} = wp.blocks;
+const Quote_Block = registerBlockType('assignment/quote-block', {
+  title: 'Basic Example',
+  icon: 'smiley',
+  category: 'layout',
+  edit: _ref => {
+    let {
+      className
+    } = _ref;
+    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      className: className
+    }, "Hello World!");
+  },
+  save: () => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, "Hello World!")
+});
+/* harmony default export */ __webpack_exports__["default"] = (Quote_Block);
 
 /***/ }),
 
@@ -118,30 +185,19 @@ var __webpack_exports__ = {};
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _panel__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./panel */ "./src/panel.js");
+/* harmony import */ var _block__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./block */ "./src/block.js");
+/* harmony import */ var _awp_custom_postmeta_fields__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./awp-custom-postmeta-fields */ "./src/awp-custom-postmeta-fields.js");
+
+// import { Meta } from './meta';
 
 const {
   registerPlugin
 } = wp.plugins;
-const {
-  registerBlockType
-} = wp.blocks;
 
-// import Movie_Quote from './block';
-
-registerBlockType('assignment2/test-block', {
-  title: 'Basic Example',
-  icon: 'smiley',
-  category: 'layout',
-  edit: _ref => {
-    let {
-      className
-    } = _ref;
-    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-      className: className
-    }, "Hello World!");
-  },
-  save: () => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, "Hello World!")
+registerPlugin('my-custom-postmeta-plugin', {
+  render() {
+    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_awp_custom_postmeta_fields__WEBPACK_IMPORTED_MODULE_2__["default"], null);
+  }
 });
 }();
 /******/ })()

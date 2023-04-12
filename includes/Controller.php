@@ -139,6 +139,8 @@ class Controller {
 
 		$this->loader->add_action( 'init', $plugin_admin, 'register_movie_cpt' );
 
+
+
 	}
 
 	/**
@@ -165,7 +167,10 @@ class Controller {
 
 		$this->loader->add_action( 'init', $plugin_blocks, 'register_panel' );
 
-		$this->loader->add_action( 'init', $plugin_blocks, 'register_movie_quote_block' );
+		$this->loader->add_action( 'enqueue_block_editor_assets', $plugin_blocks, 'enqueue_script' );
+
+
+		
 	}
 
 	/**
