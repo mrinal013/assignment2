@@ -3,6 +3,7 @@ namespace Movie\Admin;
 
 use Movie\Admin\Login as Login;
 use Movie\Admin\CPT as CPT;
+use Movie\Admin\Panel as Panel;
 
 /**
  * The admin-specific functionality of the plugin.
@@ -17,7 +18,7 @@ use Movie\Admin\CPT as CPT;
 
 class Admin {
 
-	use Login, CPT;
+	use Login, CPT, Panel;
 
 	/**
 	 * The ID of this plugin.
@@ -52,6 +53,10 @@ class Admin {
 		$this->login_template();
 
 		$this->register_movie_cpt();
+
+		
+
+		
 
 	}
 

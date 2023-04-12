@@ -1,17 +1,17 @@
 const { __ } = wp.i18n;
 const { compose } = wp.compose;
 const { withSelect, withDispatch } = wp.data;
-const { PluginDocumentSettingPanel } = wp.editPost;
-const { TextControl, PanelRow } = wp.components;
  
-const Movie_Title = ( { postType, postMeta, setPostMeta } ) => {
-    
-    if ( 'movie' !== postType ) return null;  // Will only render component for post type 'movie'
+const { PluginDocumentSettingPanel } = wp.editPost;
+const { ToggleControl, TextControl, PanelRow } = wp.components;
 
+ 
+const Component = ( { postType, postMeta, setPostMeta } ) => {
 	return(
-		<PluginDocumentSettingPanel title={ __( 'Movie Title', 'assignment2') } initialOpen="true">
+		<PluginDocumentSettingPanel title={ __( 'My Custom Post meta', 'txtdomain') } initialOpen="true">
 			<PanelRow>
-                <TextControl
+				<TextControl
+					label={ __( 'Write some text, if you like', 'txtdomain' ) }
 					value={ postMeta._movie_title }
 					onChange={ ( value ) => setPostMeta( { _movie_title: value } ) }
 				/>
@@ -19,7 +19,7 @@ const Movie_Title = ( { postType, postMeta, setPostMeta } ) => {
 		</PluginDocumentSettingPanel>
 	);
 }
-
+ 
 export default compose( [
 	withSelect( ( select ) => {		
 		return {
@@ -34,4 +34,4 @@ export default compose( [
 			}
 		};
 	} )
-] )( Movie_Title );
+] )( Component );

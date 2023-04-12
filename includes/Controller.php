@@ -70,6 +70,8 @@ class Controller {
 			$this->version = '1.0.0';
 		}
 		$this->plugin_name = 'movie';
+
+		
 	}
 
 	public function assignment2_operation() {
@@ -139,7 +141,9 @@ class Controller {
 
 		$this->loader->add_action( 'init', $plugin_admin, 'register_movie_cpt' );
 
+		$this->loader->add_action( 'init', $plugin_admin, 'register_movie_title' );
 
+		$this->loader->add_action( 'enqueue_block_editor_assets', $plugin_admin, 'enqueue_panel_script' );
 
 	}
 
@@ -165,7 +169,6 @@ class Controller {
 	public function register_blocks() {
 		$plugin_blocks = new Block( $this->get_plugin_name(), $this->get_version() );
 
-		$this->loader->add_action( 'init', $plugin_blocks, 'register_panel' );
 
 		$this->loader->add_action( 'enqueue_block_editor_assets', $plugin_blocks, 'enqueue_script' );
 

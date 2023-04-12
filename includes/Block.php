@@ -32,56 +32,16 @@ class Block {
 
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
-
-        $this->register_panel();
-
-
+        
 	}
-    /**
-     * Register movie_title post meta in panel
-     */
-    public function register_panel() {
-        register_post_meta( 'movie', '_movie_title', [
-            'show_in_rest' => true,
-            'single' => true,
-            'type' => 'string',
-        ] );
-        register_post_meta( 'post', '_my_custom_text', [
-            'show_in_rest' => true,
-            'single' => true,
-            'type' => 'string',
-        ] );
-    }
 
     public function enqueue_script() {
         wp_enqueue_script(
-            'movie-title-meta', 
+            'fav-quote-block', 
             plugins_url( 'build/index.js', __DIR__ ),
             array( 'wp-edit-post' ),
             filemtime( plugin_dir_path( __DIR__ ) . 'build/index.js' ),
             false
         );
-    }
-
-    // /**
-    //  * Register movie quote block
-    //  */
-    // public function register_movie_quote_block() {
-    //     // Register JavasScript File build/index.js
-    //     wp_register_script(
-    //         'movie-quote',
-    //         plugins_url( 'build/index.js', __DIR__ ),
-    //         array( 'wp-blocks', 'wp-element', 'wp-editor' ),
-    //         filemtime( plugin_dir_path( __DIR__ ) . 'build/index.js' )
-    //     );
-    //    // Register movie quote block
-    //     register_block_type( 'assignment2/test-block', array(
-    //         'editor_script' => 'movie-quote',
-    //     ) );
-
-    // }
-
-    
-
-    
+    }    
 }

@@ -1,12 +1,9 @@
-// import { Meta } from './meta';
-import { Quote_Block } from './block';
+const { registerBlockType } = wp.blocks;
 
-const { registerPlugin } = wp.plugins;
- 
-import AWP_Custom_Plugin from './awp-custom-postmeta-fields';
- 
-registerPlugin( 'my-custom-postmeta-plugin', {
-	render() {
-		return(<AWP_Custom_Plugin />);
-	}
+registerBlockType( 'assignment2/test-block', {
+	title: 'Basic Example',
+	icon: 'smiley',
+	category: 'layout',
+	edit: ( { className } ) => <div className={ className }>Hello World!</div>,
+	save: () => <div>Hello World!</div>,
 } );
