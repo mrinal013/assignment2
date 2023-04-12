@@ -6,7 +6,7 @@ const { PluginDocumentSettingPanel } = wp.editPost;
 const { ToggleControl, TextControl, PanelRow } = wp.components;
  
 const AWP_Custom_Plugin = ( { postType, postMeta, setPostMeta } ) => {
-	if ( 'movie' !== postType ) return null;  // Will only render component for post type 'post'
+	if ( 'post' !== postType ) return null;  // Will only render component for post type 'post'
 	
 	return(
 		<PluginDocumentSettingPanel title={ __( 'My Custom Post meta', 'txtdomain') } icon="edit" initialOpen="true">

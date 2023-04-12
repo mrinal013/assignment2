@@ -1,6 +1,6 @@
 <?php
 
-namespace Assignment2\Includes;
+namespace Movie\Includes;
 
 /**
  * Fired during plugin activation.
@@ -8,8 +8,8 @@ namespace Assignment2\Includes;
  * This class defines all code necessary to run during the plugin's activation.
  *
  * @since      1.0.0
- * @package    Assignment2
- * @subpackage Assignment2/includes
+ * @package    Movie
+ * @subpackage Movie/includes
  * @author     Mrinal Haque <mrinalhaque99@gmail.com>
  */
 class Activator {

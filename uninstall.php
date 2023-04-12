@@ -5,7 +5,7 @@
  *
  *
  * @since      1.0.0
- * @package    Assignment2
+ * @package    Movie
  */
 
 // If uninstall not called from WordPress, then exit.

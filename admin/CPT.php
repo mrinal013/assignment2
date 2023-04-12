@@ -1,5 +1,5 @@
 <?php
-namespace Assignment2\Admin;
+namespace Movie\Admin;
 
 trait CPT {
     /**

@@ -1,12 +1,12 @@
 <?php
 
-namespace Assignment2\Includes;
+namespace Movie\Includes;
 
-use Assignment2\Includes\Loader as Loader;
-use Assignment2\Includes\I18n as I18n;
-use Assignment2\Admin\Admin as Admin;
-use Assignment2\Frontend\Frontend as Frontend;
-use Assignment2\Includes\Block as Block;
+use Movie\Includes\Loader as Loader;
+use Movie\Includes\I18n as I18n;
+use Movie\Admin\Admin as Admin;
+use Movie\Frontend\Frontend as Frontend;
+use Movie\Includes\Block as Block;
 
 /**
  * The core plugin class.
@@ -18,8 +18,8 @@ use Assignment2\Includes\Block as Block;
  * version of the plugin.
  *
  * @since      1.0.0
- * @package    Assignment2
- * @subpackage Assignment2/includes
+ * @package    Movie
+ * @subpackage Movie/includes
  * @author     Mrinal Haque <mrinalhaque99@gmail.com>
  */
 class Controller {
@@ -31,7 +31,7 @@ class Controller {
 	 *
 	 * @since    1.0.0
 	 * @access   protected
-	 * @var      Assignment2_Loader    $loader    Maintains and registers all hooks for the plugin.
+	 * @var      Movie_Loader    $loader    Maintains and registers all hooks for the plugin.
 	 */
 	protected $loader;
 
@@ -64,19 +64,19 @@ class Controller {
 	 */
 	public function __construct() {
 		$this->assignment2_operation();
-		if ( defined( 'ASSIGNMENT2_VERSION' ) ) {
-			$this->version = WP_ADMIN_VUE_VERSION;
+		if ( defined( 'MOVIE_VERSION' ) ) {
+			$this->version = MOVIE_VERSION;
 		} else {
 			$this->version = '1.0.0';
 		}
-		$this->plugin_name = 'assignment2';
+		$this->plugin_name = 'movie';
 	}
 
 	public function assignment2_operation() {
-		if ( defined( 'Assignment2_Plugin_Loaded' ) ) { 
+		if ( defined( 'Movie_Plugin_Loaded' ) ) { 
 			return; 
 		}
-		define( 'Assignment2_Plugin_Loaded', true );
+		define( 'Movie_Plugin_Loaded', true );
 		$this->autoload();
 		$this->load_dependencies();
 		$this->set_locale();

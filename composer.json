@@ -1,5 +1,5 @@
 {
-    "name": "alen/assignment2",
+    "name": "alen/movie",
     "description": "A assignment plugin for Noogla Agency",
     "type": "wordpress-plugin",
     "license": "GPLv2",
@@ -7,9 +7,9 @@
     "require": {},
     "autoload": {
         "psr-4": {
-            "Assignment2\\Includes\\": "includes/",
-            "Assignment2\\Admin\\": "admin/",
-            "Assignment2\\Frontend\\": "public/"
+            "Movie\\Includes\\": "includes/",
+            "Movie\\Admin\\": "admin/",
+            "Movie\\Frontend\\": "public/"
         }
     }
 }

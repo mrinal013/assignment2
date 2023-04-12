@@ -1,6 +1,6 @@
 <?php
 
-namespace Assignment2\Frontend;
+namespace Movie\Frontend;
 
 /**
  * The public-facing functionality of the plugin.
@@ -8,8 +8,8 @@ namespace Assignment2\Frontend;
  * Defines the plugin name, version, and two examples hooks for how to
  * enqueue the public-facing stylesheet and JavaScript.
  *
- * @package    Assignment2
- * @subpackage Assignment2/public
+ * @package    Movie
+ * @subpackage Movie/public
  * @author     Mrinal Haque <mrinalhaque99@gmail.com>
  */
 class Frontend {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Assignment2\Includes;
+namespace Movie\Includes;
 
 /**
  * Register all actions and filters for the plugin.
@@ -9,8 +9,8 @@ namespace Assignment2\Includes;
  * the plugin, and register them with the WordPress API. Call the
  * run function to execute the list of actions and filters.
  *
- * @package    Assignment2
- * @subpackage Assignment2/includes
+ * @package    Movie
+ * @subpackage Movie/includes
  * @author     Mrinal Haque <mrinalhaque99@gmail.com>
  */
 class Loader {

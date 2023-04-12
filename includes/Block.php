@@ -1,5 +1,5 @@
 <?php
-namespace Assignment2\Includes;
+namespace Movie\Includes;
 
 class Block {
 

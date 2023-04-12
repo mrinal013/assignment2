@@ -1,8 +1,8 @@
 <?php
-namespace Assignment2\Admin;
+namespace Movie\Admin;
 
-use Assignment2\Admin\Login as Login;
-use Assignment2\Admin\CPT as CPT;
+use Movie\Admin\Login as Login;
+use Movie\Admin\CPT as CPT;
 
 /**
  * The admin-specific functionality of the plugin.
@@ -10,8 +10,8 @@ use Assignment2\Admin\CPT as CPT;
  * Defines the plugin name, version, and two examples hooks for how to
  * enqueue the admin-specific stylesheet and JavaScript.
  *
- * @package    Assignment2
- * @subpackage Assignment2/admin
+ * @package    Movie
+ * @subpackage Movie/admin
  * @author     Mrinal Haque <mrinalhaque99@gmail.com>
  */
 

@@ -8,16 +8,15 @@
  * that starts the plugin.
  *
  * @since             1.0.0
- * @package           Assignment2
+ * @package           Movie
  *
  * @wordpress-plugin
- * Plugin Name:       Assignment 2
- * Plugin URI:        mrinalbd.com
+ * Plugin Name:       Movie
  * Description:       WP Assignment for Noogla Agency
  * Version:           1.0.0
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
- * Text Domain:       assignment2
+ * Text Domain:       movie
  * Domain Path:       /languages
  */
 
@@ -30,21 +29,22 @@ if ( ! defined( 'WPINC' ) ) {
  * Define plugin constants
  */
 define( 'PLUGIN_MAIN_FILE', __FILE__ );
+define( 'MOVIE_VERSION', '1.0.0' );
 
 function activation() {
 	require plugin_dir_path( __FILE__ ) . 'includes/Activator.php';
-	Assignment2\Includes\Activator::activate();
+	Movie\Includes\Activator::activate();
 }
 function deactivation() {
 	require plugin_dir_path( __FILE__ ) . 'includes/Deactivator.php';
-	Assignment2\Includes\Deactivator::deactivate();
+	Movie\Includes\Deactivator::deactivate();
 }
 register_activation_hook( __FILE__, 'activation' );
 register_deactivation_hook( __FILE__, 'deactivation' );
 
-add_action( 'init', function(){
-	if ( ! defined( 'Assignment2_Plugin_Loaded' ) ) {
+add_action( 'init', function() {
+	if ( ! defined( 'Movie_Plugin_Loaded' ) ) {
 		require plugin_dir_path( __FILE__ ) . 'includes/Controller.php';
-		new Assignment2\Includes\Controller();
+		new Movie\Includes\Controller();
     }
 });
