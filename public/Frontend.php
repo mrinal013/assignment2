@@ -91,7 +91,7 @@ class Frontend {
 		wp_enqueue_script( 'movie-script' );
 
 		// in JavaScript, object properties are accessed as ajax_object.ajax_url, ajax_object.we_value.
-		wp_localize_script( 'script', 'ajax_object', array( 
+		wp_localize_script( 'movie-script', 'ajax_object', array( 
 			'ajax_url'	=> admin_url( 'admin-ajax.php' ),
 			'nonce'		=> wp_create_nonce( 'movie-nonce' ),
 		) );
