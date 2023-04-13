@@ -3,7 +3,7 @@ namespace Movie\Admin;
 
 use Movie\Admin\Login as Login;
 use Movie\Admin\CPT as CPT;
-use Movie\Admin\Panel as Panel;
+use Movie\Admin\Metabox as Metabox;
 
 /**
  * The admin-specific functionality of the plugin.
@@ -18,7 +18,7 @@ use Movie\Admin\Panel as Panel;
 
 class Admin {
 
-	use Login, CPT, Panel;
+	use Login, CPT, Metabox;
 
 	/**
 	 * The ID of this plugin.

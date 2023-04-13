@@ -11,7 +11,7 @@ trait Login {
 		add_filter( 'theme_page_templates', array( $this, 'add_login_template' ) );
 
         $this->templates = array(
-			'template-login.php'     => __( 'Login Page Template', 'assignment2' ),
+			'template-login.php'     => __( 'Login Page Template', 'movie' ),
 		);
 
         // Add a filter to the template include to determine if the page has login page template assigned and return it's path
@@ -71,8 +71,4 @@ trait Login {
 
 	}
 
-    public function q_symphony_skeleton_api_cb() {
-        echo 'hello from ajax';
-        wp_die();
-    }
 }

@@ -63,7 +63,7 @@ class Controller {
 	 * @since    1.0.0
 	 */
 	public function __construct() {
-		$this->assignment2_operation();
+		$this->movie_operation();
 		if ( defined( 'MOVIE_VERSION' ) ) {
 			$this->version = MOVIE_VERSION;
 		} else {
@@ -74,7 +74,7 @@ class Controller {
 		
 	}
 
-	public function assignment2_operation() {
+	public function movie_operation() {
 		if ( defined( 'Movie_Plugin_Loaded' ) ) { 
 			return; 
 		}
@@ -141,9 +141,9 @@ class Controller {
 
 		$this->loader->add_action( 'init', $plugin_admin, 'register_movie_cpt' );
 
-		$this->loader->add_action( 'init', $plugin_admin, 'register_movie_title' );
+		$this->loader->add_action( 'add_meta_boxes', $plugin_admin, 'register_movie_title_meta_box' );
 
-		$this->loader->add_action( 'enqueue_block_editor_assets', $plugin_admin, 'enqueue_panel_script' );
+		$this->loader->add_action( 'save_post', $plugin_admin, 'meta_fields_save_meta_box_data' );
 
 	}
 
@@ -170,10 +170,6 @@ class Controller {
 		$plugin_blocks = new Block( $this->get_plugin_name(), $this->get_version() );
 
 
-		$this->loader->add_action( 'enqueue_block_editor_assets', $plugin_blocks, 'enqueue_script' );
-
-
-		
 	}
 
 	/**
@@ -200,7 +196,7 @@ class Controller {
 	 * The reference to the class that orchestrates the hooks with the plugin.
 	 *
 	 * @since     1.0.0
-	 * @return    Assignment2_Loader    Orchestrates the hooks of the plugin.
+	 * @return    Movie_Loader    Orchestrates the hooks of the plugin.
 	 */
 	public function get_loader() {
 		return $this->loader;

@@ -1,5 +1,6 @@
 (function($) {
 
+
     function isEmail(email) {
         var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
         return regex.test(email);
@@ -15,6 +16,9 @@
 	
     $('#submit-form').on( 'click', function(e) {
         e.preventDefault();
+
+        $('#login-message .text-success').remove();
+        $('#login-message .text-danger').remove();
 
         $('.warning').remove();
 
@@ -44,11 +48,18 @@
                     password
                 },
                 success(response) {
-                    let token = response.data.token;
-                    console.log(response.data.token);
+                    
 
-                    // Apply setCookie
-                    setCookie('token', token, 30);
+                    
+                    if ( response.success ) {
+                        // setCookie token
+                        let token = response.data.token;
+                        setCookie('token', token, 30);
+                        $('#login-message').append('<p class="text-success">You are log in successfully !!! </p>');
+                    } else {
+                        $('#login-message').append('<p class="text-danger">This app suspect wrong username/passwork !!!</p>');
+                    }
+                    
                 }
             })
         }

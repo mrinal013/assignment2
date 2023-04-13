@@ -32,16 +32,30 @@ class Block {
 
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
-        
+
+		$this->enqueue_block_script();
 	}
 
-    public function enqueue_script() {
-        wp_enqueue_script(
-            'fav-quote-block', 
-            plugins_url( 'build/index.js', __DIR__ ),
-            array( 'wp-edit-post' ),
-            filemtime( plugin_dir_path( __DIR__ ) . 'build/index.js' ),
-            false
-        );
-    }    
+    public function enqueue_block_script() {
+		
+		// Register JavasScript File build/index.js
+		wp_register_script(
+			'my-custom-block',
+			plugins_url( 'build/index.js', __DIR__ ),
+			array( 'wp-blocks', 'wp-element', 'wp-editor' ),
+			filemtime( plugin_dir_path( __DIR__ ) . 'build/index.js' )
+		);
+
+		// Register quote block
+		register_block_type( 'movie/quote-block', array(
+			'editor_script' => 'my-custom-block',
+			'render_callback' => array( $this, 'fav_quote_dynamic_render_callback' ),
+		) );
+    }
+	
+	public function fav_quote_dynamic_render_callback( $block_attributes, $content ) {
+		ob_start();
+		echo $content;
+		return ob_get_clean();
+	}
 }
